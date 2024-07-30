@@ -38,19 +38,19 @@ export default function Login() {
   });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    // router.push('/dashboard')
-    try {
-      const response = await fetch("http://localhost:3000/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    router.push('/dashboard/profile')
+    // try {
+    //   const response = await fetch("http://localhost:3000/api/users/login", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(data),
+    //   });
 
-    } catch (error) {
-      console.error("An error occurred during login", error);
-    }
+    // } catch (error) {
+    //   console.error("An error occurred during login", error);
+    // }
   };
 
   return (

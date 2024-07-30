@@ -1,0 +1,28 @@
+import Layout from "@/components/UI/layout";
+import React from "react";
+
+export default function PartyLedger() {
+  return (
+    <div>
+      {/* <table className="w-full">
+        <tr>
+          <th>Company</th>
+          <th>Contact</th>
+          <th>Country</th>
+        </tr>
+        <tr>
+          <td>Alfreds Futterkiste</td>
+          <td>Maria Anders</td>
+          <td>Germany</td>
+        </tr>
+        <tr>
+          <td>Centro comercial Moctezuma</td>
+          <td>Francisco Chang</td>
+          <td>Mexico</td>
+        </tr>
+      </table> */}
+    </div>
+  );
+}
+
+PartyLedger.getLayout = Layout;

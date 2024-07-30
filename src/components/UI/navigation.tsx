@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 type navModel = {
   toggle?: boolean;
@@ -5,12 +6,17 @@ type navModel = {
 };
 
 function Navigation({ toggle, setToggle }: navModel) {
+  const router = useRouter()
   const menuClick = () => {
     setToggle(!toggle);
   };
+  const logout = () => {
+    router.push('/auth/login')
+
+  }
   return (
     <>
-      <nav className="bg-indigo-50 min-h-[6vh] flex items-center justify-between px-3">
+      <nav className="bg-indigo-50 min-h-[8vh] flex items-center justify-between px-3">
         <div className="flex">
           <div className="px-2 border-gray-400 border-e-2 border-solid cursor-pointer" onClick={menuClick}>
             <svg width="25" height="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -21,10 +27,10 @@ function Navigation({ toggle, setToggle }: navModel) {
         </div>
 
         <div className="flex justify-end">
-          <ul className="flex">
-            <li className="px-2 text-gray-700">Profile</li>
+          <ul className="flex items-center">
+            <li className="px-4 text-gray-700">Profile</li>
           </ul>
-          <div className="px-2">Icon</div>
+          <button className="bg-indigo-400 text-white py-1 px-3 rounded-md" onClick={logout}>Logout</button>
         </div>
       </nav>
       <strong>

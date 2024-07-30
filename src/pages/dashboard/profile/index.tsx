@@ -9,18 +9,18 @@ type DashProps = {
 export default function Dashboard({toggle}: DashProps) {
 
   return (
-    <div className='min-h-[90vh] grid grid-cols-2 gap-4 p-4'>
+    <div className='min-h-[88vh] grid grid-cols-2 gap-4 p-4'>
       <div className='bg-indigo-400 col-span-1 rounded-xl flex justify-center items-center'>
-        <h1 className='text-4xl text-white font-semibold'>Tile</h1>
+        <h1 className='text-4xl text-white font-bold'>Partt/Ledger</h1>
         </div>
       <div className='bg-indigo-400 col-span-1 rounded-xl flex justify-center items-center'>
-      <h1 className='text-4xl text-white font-semibold'>Tile</h1>
+      <h1 className='text-4xl text-white font-bold'>Products</h1>
       </div>
       <div className='bg-indigo-400 col-span-1 rounded-xl flex justify-center items-center'>
-      <h1 className='text-4xl text-white font-semibold'>Tile</h1>
+      <h1 className='text-4xl text-white font-bold'>Invoices</h1>
       </div>
       <div className='bg-indigo-400 col-span-1 rounded-xl flex justify-center items-center'>
-      <h1 className='text-4xl text-white font-semibold'>Tile</h1>
+      <h1 className='text-4xl text-white font-bold'>Users</h1>
       </div>
     </div>
   )
