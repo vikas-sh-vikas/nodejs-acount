@@ -1,22 +1,45 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import cookie from "react-cookies";
 type navModel = {
   toggle?: boolean;
   setToggle: (toggle: boolean) => void;
 };
 
-function Navigation({ toggle, setToggle }: navModel) {
+function Navigation({ toggle, setToggle,...props}: navModel  & React.HTMLAttributes<HTMLElement>) {
+  const token = cookie.load("accessToken")
+  const { DOMAIN } = process.env;
+
+  const cookieStorePath = `${DOMAIN || "/"}`;
+  const defaultOptions = {
+    path: cookieStorePath,
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+  };
+  console.log("Token Name",token)
   const router = useRouter()
   const menuClick = () => {
     setToggle(!toggle);
   };
-  const logout = () => {
-    router.push('/auth/login')
-
+  const logout = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/users/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+      });
+      if (response.ok) {
+        router.push("/auth/login");
+        cookie.remove("accessToken", defaultOptions)
+        cookie.remove("refreshToken", defaultOptions)
+      }
+    } catch (error) {
+      console.error("An error occurred during login", error);
+    }
   }
   return (
-    <>
-      <nav className="bg-indigo-50 min-h-[8vh] flex items-center justify-between px-3">
+      <nav {...props} className="bg-indigo-50 min-h-[6vh] flex items-center justify-between px-3">
         <div className="flex">
           <div className="px-2 border-gray-400 border-e-2 border-solid cursor-pointer" onClick={menuClick}>
             <svg width="25" height="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -27,16 +50,14 @@ function Navigation({ toggle, setToggle }: navModel) {
         </div>
 
         <div className="flex justify-end">
-          <ul className="flex items-center">
-            <li className="px-4 text-gray-700">Profile</li>
+          <ul className="flex">
+            <li className="px-2 text-gray-700">Profile</li>
           </ul>
-          <button className="bg-indigo-400 text-white py-1 px-3 rounded-md" onClick={logout}>Logout</button>
+          <button onClick={logout}>
+            Log Out
+          </button>
         </div>
       </nav>
-      <strong>
-        <hr></hr>
-      </strong>
-    </>
   );
 }
 

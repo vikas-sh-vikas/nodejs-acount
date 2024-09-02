@@ -1,15 +1,13 @@
 import React from 'react'
 
-function Footer() {
+function Footer({...props}) {
   return (
-    <>
-    <div className='w-full min-h-[4vh] flex justify-center items-center absolute bottom-0'>
+    <div {...props} className='w-full flex justify-center items-center relative bottom-0'>
         <h3>
             Copyrights
         </h3>
     </div>
   
-    </>
   )
 }
 
